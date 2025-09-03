@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
+
 export default function Navbar(props) {
   const [isDark, setIsDark] = useState(false);
 
   const handleToggle = () => {
     setIsDark(!isDark);
     document.body.classList.toggle("dark-mode");
+    
+     if (!isDark) {
+      props.showAlert("Dark mode has been enabled", "success");
+    } else {
+      props.showAlert("Light mode has been enabled", "success");
+    }
   };
 
   return (

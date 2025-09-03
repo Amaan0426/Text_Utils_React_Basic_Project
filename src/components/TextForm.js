@@ -5,17 +5,20 @@ export default function TextForm(props) {
     //console.log("Uppercase was clicked "+ text);
     let newText = text.toUpperCase();
     setText(newText)
+    props.showAlert("Converted to Uppercase!", "success");
 
   }
 
   const handleLowerClick = () => {
     let newText = text.toLowerCase();
     setText(newText)
+    props.showAlert("Converted to Lowercase!", "success");
   }
 
   const handleClearClick = () => {
     let newText = '';
     setText(newText)
+    props.showAlert("Text Cleared!", "success");
   }
 
   const handleOnChange = (event) => {
@@ -32,11 +35,12 @@ export default function TextForm(props) {
       newText += words[i][0].toUpperCase() + words[i].slice(1).toLowerCase();
     }
     if (i < words.length - 1) {
-      newText += " "; // space add karo
+      newText += " "; // Add space between words
     }
   }
 
   setText(newText);
+  props.showAlert("Converted to Capitalized!", "success")
 };
 
 const handleAlternateClick = () => {
@@ -51,21 +55,25 @@ const handleAlternateClick = () => {
   }
 
   setText(newText);
+  props.showAlert("Converted to Alternate Case!", "success")
 };
 
 const handleReverseClick = () => {
   let newText = text.split("").reverse().join("");
   setText(newText);
+  props.showAlert("Text Reversed!", "success")
 };
 
 const handleCopyClick = () => {
   navigator.clipboard.writeText(text);
   alert("Text copied to clipboard!");
+  props.showAlert("Text Copied to Clipboard!", "success")
 };
 
 const handleRemoveSpaces = () => {
   let newText = text.replace(/\s+/g, " ").trim();
   setText(newText);
+  props.showAlert("Extra spaces removed!", "success")
 };
 
 const handleFindReplace = () => {
@@ -73,6 +81,7 @@ const handleFindReplace = () => {
   let replaceWord = prompt("Enter word to replace with:");
   let newText = text.replaceAll(findWord, replaceWord);
   setText(newText);
+  props.showAlert(`All occurrences of "${findWord}" replaced with "${replaceWord}"`, "success")
 };
 
 const handleSentenceCase = () => {
@@ -80,6 +89,7 @@ const handleSentenceCase = () => {
     c.toUpperCase()
   );
   setText(newText);
+  props.showAlert("Converted to Sentence Case!", "success")
 };
 
 const handleDownload = () => {
@@ -89,6 +99,7 @@ const handleDownload = () => {
   element.download = "textutils.txt";
   document.body.appendChild(element);
   element.click();
+  props.showAlert("File Downloaded!", "success")
 };
 
 
