@@ -28,10 +28,12 @@ export default function Navbar(props) {
           </ul>
 
           <div className="d-flex align-items-center mx-3">
-            <label className="switch">
+            <label className="switch me-2">
               <input type="checkbox" checked={isDark} onChange={handleToggle} />
               <span className="slider round"></span>
             </label>
+              {/* Dynamic message */}
+            <span>{isDark ? "Enable Light Mode" : "Enable Dark Mode"}</span>
           </div>
         </div>
       </div>
